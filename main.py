@@ -1,12 +1,8 @@
 import os
-import google.generativeai as genai
+from google import genai
 
-# Configure Gemini
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-model = genai.GenerativeModel("gemini-1.0-pro")
-
-# Read CV
 with open("cv.txt", "r", encoding="utf-8") as f:
     cv_text = f.read()
 
@@ -17,6 +13,7 @@ Need team handling, customer service, vendor management.
 
 prompt = f"""
 Compare this CV and job description.
+
 Give:
 1. Match score (0-100)
 2. 2 line explanation
@@ -29,6 +26,9 @@ JOB:
 {job_description}
 """
 
-response = model.generate_content(prompt)
+response = client.models.generate_content(
+    model="gemini-1.5-flash",
+    contents=prompt,
+)
 
 print(response.text)
