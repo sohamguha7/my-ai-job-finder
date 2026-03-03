@@ -1,10 +1,8 @@
 import os
 from google import genai
 
-# Create client using API key from GitHub Secrets
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-# Read CV file
 with open("cv.txt", "r", encoding="utf-8") as f:
     cv_text = f.read()
 
@@ -29,7 +27,7 @@ JOB:
 """
 
 response = client.models.generate_content(
-    model="gemini-1.5-flash",
+    model="gemini-1.5-flash-latest",
     contents=prompt,
 )
 
