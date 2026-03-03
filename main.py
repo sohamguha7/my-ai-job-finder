@@ -4,7 +4,7 @@ from openai import OpenAI
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Read your CV
-with open("cv.txt", "r", encoding="utf-8") as f:
+with open("./cv.txt", "r", encoding="utf-8") as f:
     cv_text = f.read()
 
 # Example job (you can change this later)
