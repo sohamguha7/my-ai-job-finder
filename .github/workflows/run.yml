@@ -8,10 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Install dependencies
+      - name: Install dependencies (clean)
         run: |
+          python -m pip uninstall -y google-generativeai || true
+          python -m pip uninstall -y google-genai || true
           python -m pip install --upgrade pip
           pip install --no-cache-dir -r requirements.txt
 
